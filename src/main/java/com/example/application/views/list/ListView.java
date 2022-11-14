@@ -16,6 +16,7 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
 @PageTitle("Home - Project Produce")
 @Route(value = "")
@@ -94,11 +95,16 @@ public class ListView extends VerticalLayout {
 
         menuBar.addItem("Contact", listener);
 
+
+
+
         MenuBar loginMenu = new MenuBar();
-        MenuItem signUp = loginMenu.addItem("Sign Up");
-        SubMenu signUpMenu = signUp.getSubMenu();
-        signUpMenu.addItem("Sign Up", listener);
-        signUpMenu.addItem("Login", listener);
+        loginMenu.addItem(new RouterLink("login", LoginView.class));
+        loginMenu.addItem("Sign Up", listener);
+        loginMenu.addItem(new RouterLink("Basket", BasketView.class));
+
+
+
 
 
         menuBar.setOpenOnHover(true);
