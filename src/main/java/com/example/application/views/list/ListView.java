@@ -3,6 +3,7 @@ package com.example.application.views.list;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
@@ -11,6 +12,7 @@ import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -102,19 +104,24 @@ public class ListView extends VerticalLayout {
         menuBar.setOpenOnHover(true);
         loginMenu.setOpenOnHover(true);
 
+        VerticalLayout vl = new VerticalLayout();
         HorizontalLayout hl = new HorizontalLayout();
-        hl.add(menuBar);
+        hl.addComponentAsFirst(menuBar);
         hl.add(new H1("Project Produce"));
+        hl.add(loginMenu);
 
-        HorizontalLayout horizontalLogin = new HorizontalLayout();
-        horizontalLogin.add(loginMenu);
-        horizontalLogin.setDefaultVerticalComponentAlignment(Alignment.AUTO);
+        vl.add(hl);
+        add(vl);
+
+//        HorizontalLayout horizontalLogin = new HorizontalLayout();
+//        horizontalLogin.add(loginMenu);
+//        horizontalLogin.setDefaultVerticalComponentAlignment(Alignment.AUTO);
 
 //        hl.setDefaultVerticalComponentAlignment(Alignment.END);
 
-        add(hl);
-        add(horizontalLogin);
-        setHorizontalComponentAlignment(Alignment.END, horizontalLogin);
+
+//        add(horizontalLogin);
+//        setHorizontalComponentAlignment(Alignment.END, horizontalLogin);
 
 
         Image img = new Image("https://operationfoodsearch.org/wp-content/uploads/2018/05/produce-image.png", "A collection of fruits");
@@ -123,6 +130,28 @@ public class ListView extends VerticalLayout {
         verticalLayout.setSizeFull();
         verticalLayout.setAlignItems(Alignment.CENTER);
         add(verticalLayout);
+
+        VerticalLayout verticalFeature = new VerticalLayout();
+        verticalFeature.add(new H2("Featured Products"));
+        verticalFeature.setAlignItems(Alignment.CENTER);
+        add(verticalFeature);
+
+        VerticalLayout verticalSelect = new VerticalLayout();
+        Select<String> sortBy = new Select<>();
+        sortBy.setLabel("Sort by");
+        sortBy.setItems("Popularity", "Distance", "Low to high", "High to low");
+        sortBy.setValue("Popularity");
+        verticalSelect.add(sortBy);
+        verticalSelect.setAlignItems(Alignment.CENTER);
+        add(verticalSelect);
+
+        Image apple = new Image("https://media.istockphoto.com/id/184276818/photo/red-apple.jpg?s=612x612&w=0&k=20&c=NvO-bLsG0DJ_7Ii8SSVoKLurzjmV0Qi4eGfn6nW3l5w=", "Apple");
+        VerticalLayout verticalApple = new VerticalLayout();
+        apple.setWidth(200, Unit.PIXELS);
+        apple.setHeight(200, Unit.PIXELS);
+        verticalApple.add(apple);
+        verticalApple.setAlignItems(Alignment.CENTER);
+        add(verticalApple);
 
 //        button.addClickListener(click-> Notification.show("Hello, " + name.getValue()));
     }
