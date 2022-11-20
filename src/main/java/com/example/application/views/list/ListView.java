@@ -99,7 +99,7 @@ public class ListView extends VerticalLayout {
 
 
         MenuBar loginMenu = new MenuBar();
-        loginMenu.addItem(new RouterLink("login", LoginView.class));
+        loginMenu.addItem(new RouterLink("Login", LoginView.class));
         loginMenu.addItem("Sign Up", listener);
         loginMenu.addItem(new RouterLink("Basket", BasketView.class));
 
